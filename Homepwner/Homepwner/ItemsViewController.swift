@@ -17,8 +17,21 @@ class ItemsViewController: UITableViewController {
     
     // UITableViewDataSource
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count
+        let rowCount: Int
+        switch section {
+        case 0:
+            rowCount = itemStore.allItems.count
+        case 1:
+            rowCount = 1
+        default:
+            rowCount = 0
+        }
+        return rowCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,14 +43,25 @@ class ItemsViewController: UITableViewController {
         // that is at the nth index of items, where n = row this cell
         // will appear in on the tableview
         
-        let item = itemStore.allItems[indexPath.row]
+        let section = indexPath.section
+        let row = indexPath.row
+        let item: Item?
         
-        // contents
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "$\(item.valueInDollars)"
+        switch section {
+        case 0:
+            item = itemStore.allItems[row]
+            cell.textLabel?.text = item!.name
+            cell.detailTextLabel?.text = "$\(item!.valueInDollars)"
+        case 1:
+            item = nil
+            cell.textLabel?.text = "No more items!"
+            cell.detailTextLabel?.text = nil
+        default:
+            item = nil
+            cell.textLabel?.text = nil
+            cell.detailTextLabel?.text = nil
+        }
         
         return cell
     }
-    
-    
 }

@@ -34,10 +34,21 @@ class ItemsViewController: UITableViewController {
         return rowCount
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let rowHeight: CGFloat
+        switch indexPath.section {
+        case 0:
+            rowHeight = 60
+        default:
+            rowHeight = 44
+        }
+        return rowHeight
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Get a new or recycled cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        let cell: UITableViewCell
         
         // Set the text on the cell with the description of the item
         // that is at the nth index of items, where n = row this cell
@@ -49,14 +60,17 @@ class ItemsViewController: UITableViewController {
         
         switch section {
         case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
             item = itemStore.allItems[row]
             cell.textLabel?.text = item!.name
             cell.detailTextLabel?.text = "$\(item!.valueInDollars)"
         case 1:
+            cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
             item = nil
             cell.textLabel?.text = "No more items!"
             cell.detailTextLabel?.text = nil
         default:
+            cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
             item = nil
             cell.textLabel?.text = nil
             cell.detailTextLabel?.text = nil

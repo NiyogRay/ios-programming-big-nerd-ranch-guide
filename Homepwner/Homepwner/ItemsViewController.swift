@@ -17,8 +17,34 @@ class ItemsViewController: UITableViewController {
     
     // UITableViewDataSource
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemStore.allItems.count
+        let rowCount: Int
+        switch section {
+        case 0:
+            rowCount = itemStore.itemsLessThanEqual50.count
+        case 1:
+            rowCount = itemStore.itemsGreaterThan50.count
+        default:
+            rowCount = 0
+        }
+        return rowCount
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let title: String?
+        switch section {
+        case 0:
+            title = "Items less or equal to $50"
+        case 1:
+            title = "Items greater than $50"
+        default:
+            title = nil
+        }
+        return title
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -30,7 +56,17 @@ class ItemsViewController: UITableViewController {
         // that is at the nth index of items, where n = row this cell
         // will appear in on the tableview
         
-        let item = itemStore.allItems[indexPath.row]
+        let section = indexPath.section
+        let row = indexPath.row
+        let item: Item
+        switch section {
+        case 0:
+            item = itemStore.itemsLessThanEqual50[row]
+        case 1:
+            item = itemStore.itemsGreaterThan50[row]
+        default:
+            item = Item()
+        }
         
         // contents
         cell.textLabel?.text = item.name
@@ -38,6 +74,4 @@ class ItemsViewController: UITableViewController {
         
         return cell
     }
-    
-    
 }

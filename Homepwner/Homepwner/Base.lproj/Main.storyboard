@@ -61,16 +61,16 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAJ-ep-3cY">
-                                            <rect key="frame" x="317" y="22" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HO7-8I-y1b">
                                             <rect key="frame" x="16" y="37" width="35.5" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAJ-ep-3cY">
+                                            <rect key="frame" x="317" y="22" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -81,6 +81,7 @@
                                         <constraint firstItem="xay-i7-7Jc" firstAttribute="leading" secondItem="wIe-Z2-8hH" secondAttribute="leadingMargin" id="PWe-4K-m1p"/>
                                         <constraint firstAttribute="trailing" secondItem="uAJ-ep-3cY" secondAttribute="trailing" constant="16" id="SAb-7Y-NI0"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HO7-8I-y1b" secondAttribute="trailing" constant="20" symbolic="YES" id="YKR-hR-JZF"/>
+                                        <constraint firstItem="HO7-8I-y1b" firstAttribute="top" secondItem="xay-i7-7Jc" secondAttribute="bottom" constant="5" id="ciL-qb-zz1"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xay-i7-7Jc" secondAttribute="trailing" constant="20" symbolic="YES" id="fa0-x9-wEG"/>
                                         <constraint firstItem="uAJ-ep-3cY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wIe-Z2-8hH" secondAttribute="leading" constant="20" symbolic="YES" id="lNf-l1-ESf"/>
                                         <constraint firstItem="HO7-8I-y1b" firstAttribute="bottom" secondItem="wIe-Z2-8hH" secondAttribute="bottomMargin" id="rvJ-pn-MNX"/>

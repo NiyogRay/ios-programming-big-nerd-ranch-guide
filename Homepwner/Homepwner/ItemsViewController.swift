@@ -48,6 +48,9 @@ class ItemsViewController: UITableViewController {
         let insets = UIEdgeInsets(top: statusBarHeight, left: 0, bottom: 0, right: 0)
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 65
     }
     
     // MARK: - UITableViewDataSource
@@ -161,17 +164,6 @@ class ItemsViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDelegate
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let rowHeight: CGFloat
-        switch indexPath.section {
-        case 0:
-            rowHeight = 65
-        default:
-            rowHeight = 44
-        }
-        return rowHeight
-    }
     
     override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Remove"

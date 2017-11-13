@@ -1,11 +1,3 @@
-//
-//  ConversionViewController.swift
-//  WorldTrotter
-//
-//  Created by Niyog Ray on 04/10/17.
-//  Copyright © 2017 Niyog. All rights reserved.
-//
-
 import UIKit
 
 class ConversionViewController: UIViewController, UITextFieldDelegate {

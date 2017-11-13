@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Quiz
-//
-//  Created by Niyog Ray on 30/09/17.
-//  Copyright © 2017 Niyog. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

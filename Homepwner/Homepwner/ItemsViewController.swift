@@ -115,6 +115,11 @@ class ItemsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // Update the model
+        itemStore.moveItem(from: sourceIndexPath.row, to: destinationIndexPath.row)
+    }
+    
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

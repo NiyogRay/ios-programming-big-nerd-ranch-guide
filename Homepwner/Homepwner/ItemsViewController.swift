@@ -72,7 +72,6 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Get a new or recycled cell
-        let cell: UITableViewCell
         
         // Set the text on the cell with the description of the item
         // that is at the nth index of items, where n = row this cell
@@ -80,27 +79,31 @@ class ItemsViewController: UITableViewController {
         
         let section = indexPath.section
         let row = indexPath.row
-        let item: Item?
         
         switch section {
         case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-            item = itemStore.allItems[row]
-            cell.textLabel?.text = item!.name
-            cell.detailTextLabel?.text = "$\(item!.valueInDollars)"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
+            let item = itemStore.allItems[row]
+            cell.nameLabel.text = item.name
+            cell.serialNumberLabel.text = item.serialNumber
+            cell.valueLabel.text = "$\(item.valueInDollars)"
+            
+            return cell
+            
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
-            item = nil
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
             cell.textLabel?.text = "No more items!"
             cell.detailTextLabel?.text = nil
+            
+            return cell
+            
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
-            item = nil
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
             cell.textLabel?.text = nil
             cell.detailTextLabel?.text = nil
+            
+            return cell
         }
-        
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -163,7 +166,7 @@ class ItemsViewController: UITableViewController {
         let rowHeight: CGFloat
         switch indexPath.section {
         case 0:
-            rowHeight = 60
+            rowHeight = 65
         default:
             rowHeight = 44
         }

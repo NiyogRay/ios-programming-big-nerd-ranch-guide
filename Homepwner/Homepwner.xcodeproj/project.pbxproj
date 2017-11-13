@@ -16,6 +16,7 @@
 		B519E4EE1FAB95B500452027 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B519E4ED1FAB95B500452027 /* ItemsViewController.swift */; };
 		B519E4F01FAB965800452027 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = B519E4EF1FAB965800452027 /* Item.swift */; };
 		B519E4F21FAB9E9A00452027 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B519E4F11FAB9E9A00452027 /* ItemStore.swift */; };
+		B553B2421FB9A60A000304B5 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B553B2411FB9A60A000304B5 /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B519E4ED1FAB95B500452027 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		B519E4EF1FAB965800452027 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		B519E4F11FAB9E9A00452027 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		B553B2411FB9A60A000304B5 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				B519E4EF1FAB965800452027 /* Item.swift */,
 				B519E4F11FAB9E9A00452027 /* ItemStore.swift */,
 				B519E4ED1FAB95B500452027 /* ItemsViewController.swift */,
+				B553B2411FB9A60A000304B5 /* ItemCell.swift */,
 				B519E4C31FAB953D00452027 /* Main.storyboard */,
 				B519E4C61FAB953D00452027 /* Assets.xcassets */,
 				B519E4C81FAB953D00452027 /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 				B519E4F01FAB965800452027 /* Item.swift in Sources */,
 				B519E4F21FAB9E9A00452027 /* ItemStore.swift in Sources */,
 				B519E4C01FAB953D00452027 /* AppDelegate.swift in Sources */,
+				B553B2421FB9A60A000304B5 /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

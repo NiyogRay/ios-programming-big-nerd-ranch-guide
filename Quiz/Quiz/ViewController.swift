@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     
     func updateOffScreenLabel() {
         let screenWidth = view.frame.width
-        nextQuestionLabelCenterXConstraint.constant = -screenWidth
+        nextQuestionLabelCenterXConstraint.constant = screenWidth
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         // and the center X constraints
         let screenWidth = view.frame.width
         self.nextQuestionLabelCenterXConstraint.constant = 0
-        self.currentQuestionLabelCenterXConstraint.constant += screenWidth
+        self.currentQuestionLabelCenterXConstraint.constant -= screenWidth
         
         let animator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.75,
                                animations: {

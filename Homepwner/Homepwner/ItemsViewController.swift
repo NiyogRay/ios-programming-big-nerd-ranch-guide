@@ -109,8 +109,8 @@ class ItemsViewController: UITableViewController {
             let item = itemStore.allItems[indexPath.row]
             
             // actionSheet
-            let title = "Delete \(item.name)?"
-            let message = "Are you sure you want to delete this item?"
+            let title = "Remove \(item.name)?"
+            let message = "Are you sure you want to remove this item?"
             
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
             
@@ -118,7 +118,7 @@ class ItemsViewController: UITableViewController {
             
             alertController.addAction(cancelAction)
             
-            let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+            let deleteAction = UIAlertAction(title: "Remove", style: .destructive, handler: { (action) in
                 
                 // Remove the item from the store
                 self.itemStore.removeItem(item)
@@ -150,5 +150,9 @@ class ItemsViewController: UITableViewController {
             rowHeight = 44
         }
         return rowHeight
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Remove"
     }
 }

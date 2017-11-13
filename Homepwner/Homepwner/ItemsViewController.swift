@@ -96,14 +96,12 @@ class ItemsViewController: UITableViewController {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
             cell.textLabel?.text = "No more items!"
-            cell.detailTextLabel?.text = nil
             
             return cell
             
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCell", for: indexPath)
             cell.textLabel?.text = nil
-            cell.detailTextLabel?.text = nil
             
             return cell
         }

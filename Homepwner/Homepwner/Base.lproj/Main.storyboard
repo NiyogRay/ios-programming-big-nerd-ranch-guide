@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="247.19999999999999" y="161.46926536731635"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="o2O-68-B8K">
             <objects>
-                <viewController id="zbq-ch-qfQ" sceneMemberID="viewController">
+                <viewController id="zbq-ch-qfQ" customClass="DetailViewController" customModule="Homepwner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W4l-MK-4Mj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,6 +208,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="58C-Iw-nGl"/>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="C4g-1b-Qtf" id="Pg5-hS-e6F"/>
+                        <outlet property="nameField" destination="gmW-os-31O" id="nHF-KD-5eQ"/>
+                        <outlet property="serialNumberField" destination="EdI-Ym-fIL" id="6r2-tv-ahc"/>
+                        <outlet property="valueField" destination="McJ-rW-gU4" id="KhG-xw-39D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1f-1N-6em" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

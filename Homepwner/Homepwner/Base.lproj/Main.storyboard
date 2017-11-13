@@ -86,6 +86,11 @@
                                         <constraint firstItem="HO7-8I-y1b" firstAttribute="bottom" secondItem="wIe-Z2-8hH" secondAttribute="bottomMargin" id="rvJ-pn-MNX"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="xay-i7-7Jc" id="gQX-4t-fyn"/>
+                                    <outlet property="serialNumberLabel" destination="HO7-8I-y1b" id="MRE-oS-Lh5"/>
+                                    <outlet property="valueLabel" destination="uAJ-ep-3cY" id="tJz-rU-hc6"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyCell" textLabel="VVT-BE-Uaa" detailTextLabel="YcL-2G-1l7" rowHeight="44" style="IBUITableViewCellStyleValue1" id="pmE-Hc-W7u">
                                 <rect key="frame" x="0.0" y="153" width="375" height="44"/>

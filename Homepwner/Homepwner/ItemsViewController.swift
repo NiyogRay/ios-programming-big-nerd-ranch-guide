@@ -50,7 +50,7 @@ class ItemsViewController: UITableViewController {
         tableView.scrollIndicatorInsets = insets
     }
     
-    // UITableViewDataSource
+    // MARK: - UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -67,17 +67,6 @@ class ItemsViewController: UITableViewController {
             rowCount = 0
         }
         return rowCount
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let rowHeight: CGFloat
-        switch indexPath.section {
-        case 0:
-            rowHeight = 60
-        default:
-            rowHeight = 44
-        }
-        return rowHeight
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,5 +101,30 @@ class ItemsViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        // If the table view is asking to commit a delete command...
+        if editingStyle == .delete {
+            let item = itemStore.allItems[indexPath.row]
+            // Remove the item from the store
+            itemStore.removeItem(item)
+            
+            // Also remove that row from the table view with an animation
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let rowHeight: CGFloat
+        switch indexPath.section {
+        case 0:
+            rowHeight = 60
+        default:
+            rowHeight = 44
+        }
+        return rowHeight
     }
 }

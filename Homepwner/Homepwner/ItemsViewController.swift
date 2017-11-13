@@ -148,6 +148,15 @@ class ItemsViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 1 {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
     // MARK: - UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -163,5 +172,16 @@ class ItemsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "Remove"
+    }
+    
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if proposedDestinationIndexPath.section == 1 {
+            // move to last position
+            let modifiedIndexPath = IndexPath(row: itemStore.allItems.count - 1, section: 0)
+            return modifiedIndexPath
+        }
+        else {
+            return proposedDestinationIndexPath
+        }
     }
 }

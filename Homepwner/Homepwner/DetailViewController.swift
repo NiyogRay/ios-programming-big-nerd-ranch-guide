@@ -26,6 +26,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         return formatter
     }()
     
+    @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -37,6 +41,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        // Clear first responder
+        view.endEditing(true)
         
         // Save "changes" to item
         item.name = nameField.text ?? ""

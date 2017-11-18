@@ -210,6 +210,7 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="58C-Iw-nGl" firstAttribute="trailing" secondItem="sJL-5E-RVS" secondAttribute="trailing" constant="16" id="ngJ-2d-pxf"/>
                             <constraint firstItem="sJL-5E-RVS" firstAttribute="leading" secondItem="58C-Iw-nGl" secondAttribute="leading" constant="16" id="oTk-Mt-8j8"/>
@@ -217,6 +218,9 @@
                             <constraint firstItem="58C-Iw-nGl" firstAttribute="bottom" secondItem="sJL-5E-RVS" secondAttribute="bottom" constant="8" id="pTm-v3-4N3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="58C-Iw-nGl"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="qpz-Sm-eqm" appends="YES" id="Zgf-xp-IaA"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="dateLabel" destination="C4g-1b-Qtf" id="Pg5-hS-e6F"/>
@@ -226,6 +230,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1f-1N-6em" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qpz-Sm-eqm">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="zbq-ch-qfQ" id="Z7K-xt-Oy7"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1472.8" y="160.56971514242881"/>
         </scene>

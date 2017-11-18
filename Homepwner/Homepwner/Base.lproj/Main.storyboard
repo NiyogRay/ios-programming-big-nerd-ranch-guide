@@ -150,6 +150,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zbq-ch-qfQ" id="6Wr-Ol-ald"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -167,6 +170,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zbq-ch-qfQ" id="rlh-gB-qWW"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -184,6 +190,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zbq-ch-qfQ" id="iD6-Pd-zKp"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>

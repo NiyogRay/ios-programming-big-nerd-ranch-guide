@@ -166,7 +166,7 @@
                                                 <rect key="frame" x="53" y="0.0" width="235" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="zbq-ch-qfQ" id="iD6-Pd-zKp"/>
                                                 </connections>

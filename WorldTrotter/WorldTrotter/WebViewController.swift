@@ -1,11 +1,3 @@
-//
-//  WebViewController.swift
-//  WorldTrotter
-//
-//  Created by Niyog Ray on 30/10/17.
-//  Copyright © 2017 Niyog. All rights reserved.
-//
-
 import UIKit
 import WebKit
 

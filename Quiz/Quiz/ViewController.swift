@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Quiz
-//
-//  Created by Niyog Ray on 30/09/17.
-//  Copyright © 2017 Niyog. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -62,7 +54,7 @@ class ViewController: UIViewController {
     
     func updateOffScreenLabel() {
         let screenWidth = view.frame.width
-        nextQuestionLabelCenterXConstraint.constant = -screenWidth
+        nextQuestionLabelCenterXConstraint.constant = screenWidth
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,7 +81,7 @@ class ViewController: UIViewController {
         // and the center X constraints
         let screenWidth = view.frame.width
         self.nextQuestionLabelCenterXConstraint.constant = 0
-        self.currentQuestionLabelCenterXConstraint.constant += screenWidth
+        self.currentQuestionLabelCenterXConstraint.constant -= screenWidth
         
         let animator = UIViewPropertyAnimator(duration: 0.5, dampingRatio: 0.75,
                                animations: {

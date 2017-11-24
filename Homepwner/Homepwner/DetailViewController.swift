@@ -2,6 +2,8 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Properties
+    
     @IBOutlet var nameField: CustomTextField!
     @IBOutlet var serialNumberField: CustomTextField!
     @IBOutlet var valueField: CustomTextField!
@@ -30,6 +32,12 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         
         return formatter
     }()
+    
+    // MARK: - Actions
+    
+    @IBAction func takePicture(_ sender: UIBarButtonItem) {
+        
+    }
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)

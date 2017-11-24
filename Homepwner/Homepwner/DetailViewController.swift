@@ -34,6 +34,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
+    // MARK: - ViewCycle
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -68,5 +70,18 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    // MARK: - Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showDate"?:
+            let aDateViewController = segue.destination as! DateViewController
+            aDateViewController.item = item
+            
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
     }
 }

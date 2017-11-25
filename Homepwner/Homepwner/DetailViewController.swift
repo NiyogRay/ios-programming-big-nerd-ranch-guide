@@ -48,6 +48,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         }
         
         imagePicker.delegate = self
+        
+        // Place image picker on the screen
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {

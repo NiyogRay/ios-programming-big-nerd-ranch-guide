@@ -9,6 +9,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     @IBOutlet var valueField: CustomTextField!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var removeImageButton: UIButton!
     
     var item: Item! {
         didSet {
@@ -17,6 +18,21 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     }
     
     var imageStore: ImageStore!
+    
+    var image: UIImage! {
+        didSet {
+            if image == nil {
+                imageView.image = nil
+                removeImageButton.isHidden = true
+                self.imageStore.deleteImage(forKey: self.item.key)
+            }
+            else {
+                imageView.image = image
+                removeImageButton.isHidden = false
+                self.imageStore.setImage(image, forKey: self.item.key)
+            }
+        }
+    }
     
     let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -56,6 +72,27 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func deleteImage(_ sender: Any) {
+        
+        // alert
+        let title = "Remove \(item.name)'s image?"
+        let message = "Are you sure you want to remove this image?"
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "Remove", style: .destructive, handler: { (action) in
+            self.image = nil
+        })
+        alertController.addAction(deleteAction)
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
@@ -75,8 +112,12 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
         
         // If there is an associated image with the item,
         // display it on the image view
-        let image = imageStore.image(forKey: key)
-        imageView.image = image
+        if let anImage = imageStore.image(forKey: key) {
+            image = anImage
+        }
+        else {
+            image = nil
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,14 +151,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        // Get pickerd image from info dictionary
-        let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        
-        // Store the image in the ImageStore for the item's key
-        imageStore.setImage(image, forKey: item.key)
-        
-        // Put that image on the screen in the image view
-        imageView.image = image
+        // Get picked image from info dictionary
+        image = info[UIImagePickerControllerEditedImage] as! UIImage
         
         // Take image picker off the screen -
         // you must call this dismiss method

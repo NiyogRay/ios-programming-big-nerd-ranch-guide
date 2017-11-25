@@ -19,6 +19,7 @@
 		B553B2421FB9A60A000304B5 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B553B2411FB9A60A000304B5 /* ItemCell.swift */; };
 		B574097B1FB9DB0000ABBD7B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B574097A1FB9DB0000ABBD7B /* DetailViewController.swift */; };
 		B57DADA81FC06B8700A926E3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57DADA71FC06B8700A926E3 /* CustomTextField.swift */; };
+		B592081C1FC926E900D6E9AC /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B592081B1FC926E900D6E9AC /* ImageStore.swift */; };
 		B5BAF3E31FC820E500AE5C2D /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BAF3E21FC820E500AE5C2D /* DateViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		B553B2411FB9A60A000304B5 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		B574097A1FB9DB0000ABBD7B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B57DADA71FC06B8700A926E3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		B592081B1FC926E900D6E9AC /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		B5BAF3E21FC820E500AE5C2D /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 				B574097A1FB9DB0000ABBD7B /* DetailViewController.swift */,
 				B5BAF3E21FC820E500AE5C2D /* DateViewController.swift */,
 				B57DADA71FC06B8700A926E3 /* CustomTextField.swift */,
+				B592081B1FC926E900D6E9AC /* ImageStore.swift */,
 				B519E4C31FAB953D00452027 /* Main.storyboard */,
 				B519E4C61FAB953D00452027 /* Assets.xcassets */,
 				B519E4C81FAB953D00452027 /* LaunchScreen.storyboard */,
@@ -282,6 +285,7 @@
 				B519E4EE1FAB95B500452027 /* ItemsViewController.swift in Sources */,
 				B519E4F01FAB965800452027 /* Item.swift in Sources */,
 				B519E4F21FAB9E9A00452027 /* ItemStore.swift in Sources */,
+				B592081C1FC926E900D6E9AC /* ImageStore.swift in Sources */,
 				B574097B1FB9DB0000ABBD7B /* DetailViewController.swift in Sources */,
 				B519E4C01FAB953D00452027 /* AppDelegate.swift in Sources */,
 				B553B2421FB9A60A000304B5 /* ItemCell.swift in Sources */,

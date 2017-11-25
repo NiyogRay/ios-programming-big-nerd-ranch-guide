@@ -1,6 +1,6 @@
 import UIKit
 
-class DetailViewController: UIViewController, UITextFieldDelegate {
+class DetailViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     // MARK: - Properties
     
@@ -46,6 +46,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         } else {
             imagePicker.sourceType = .photoLibrary
         }
+        
+        imagePicker.delegate = self
     }
     
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {

@@ -23,6 +23,7 @@ class ValueLabel: UILabel {
             if let validText = text {
                 let formatter = NumberFormatter()
                 formatter.numberStyle = .currency
+                formatter.locale = Locale(identifier: "en_us")
                 
                 if let value = formatter.number(from: validText) {
                     let amount = value.intValue

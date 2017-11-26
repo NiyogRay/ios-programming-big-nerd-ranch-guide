@@ -15,6 +15,7 @@
 		B5F82F6C1FCB3DB100CAB709 /* TouchTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F82F6B1FCB3DB100CAB709 /* TouchTrackerTests.swift */; };
 		B5F82F771FCB3DB100CAB709 /* TouchTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F82F761FCB3DB100CAB709 /* TouchTrackerUITests.swift */; };
 		B5F82F851FCB3E0F00CAB709 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F82F841FCB3E0F00CAB709 /* Line.swift */; };
+		B5F82F871FCB3F9300CAB709 /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F82F861FCB3F9300CAB709 /* DrawView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B5F82F761FCB3DB100CAB709 /* TouchTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchTrackerUITests.swift; sourceTree = "<group>"; };
 		B5F82F781FCB3DB100CAB709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5F82F841FCB3E0F00CAB709 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		B5F82F861FCB3F9300CAB709 /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				B5F82F561FCB3DB100CAB709 /* AppDelegate.swift */,
 				B5F82F581FCB3DB100CAB709 /* ViewController.swift */,
 				B5F82F841FCB3E0F00CAB709 /* Line.swift */,
+				B5F82F861FCB3F9300CAB709 /* DrawView.swift */,
 				B5F82F5A1FCB3DB100CAB709 /* Main.storyboard */,
 				B5F82F5D1FCB3DB100CAB709 /* Assets.xcassets */,
 				B5F82F5F1FCB3DB100CAB709 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 			files = (
 				B5F82F851FCB3E0F00CAB709 /* Line.swift in Sources */,
 				B5F82F591FCB3DB100CAB709 /* ViewController.swift in Sources */,
+				B5F82F871FCB3F9300CAB709 /* DrawView.swift in Sources */,
 				B5F82F571FCB3DB100CAB709 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

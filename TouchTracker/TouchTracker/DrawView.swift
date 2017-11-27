@@ -5,7 +5,20 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
     var currentLines = [NSValue: Line]()
     var finishedLines = [Line]()
     var selectedLineIndex: Int? {
+        willSet {
+            // If new line selected while another line is selected...
+            // Hide menu
+            if newValue != selectedLineIndex {
+                let menu = UIMenuController.shared
+                if menu.isMenuVisible {
+                    menu.setMenuVisible(false, animated: true)
+                }
+            }
+        }
+        
         didSet {
+            // If line is deselected...
+            // Hide menu
             if selectedLineIndex == nil {
                 let menu = UIMenuController.shared
                 if menu.isMenuVisible {

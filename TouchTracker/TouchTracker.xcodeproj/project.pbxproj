@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B556A5691FCBF7E9006C4857 /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556A5681FCBF7E9006C4857 /* Circle.swift */; };
 		B5F82F571FCB3DB100CAB709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F82F561FCB3DB100CAB709 /* AppDelegate.swift */; };
 		B5F82F591FCB3DB100CAB709 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F82F581FCB3DB100CAB709 /* ViewController.swift */; };
 		B5F82F5C1FCB3DB100CAB709 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5F82F5A1FCB3DB100CAB709 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B556A5681FCBF7E9006C4857 /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		B5F82F531FCB3DB100CAB709 /* TouchTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TouchTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5F82F561FCB3DB100CAB709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5F82F581FCB3DB100CAB709 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				B5F82F561FCB3DB100CAB709 /* AppDelegate.swift */,
 				B5F82F581FCB3DB100CAB709 /* ViewController.swift */,
 				B5F82F841FCB3E0F00CAB709 /* Line.swift */,
+				B556A5681FCBF7E9006C4857 /* Circle.swift */,
 				B5F82F861FCB3F9300CAB709 /* DrawView.swift */,
 				B5F82F5A1FCB3DB100CAB709 /* Main.storyboard */,
 				B5F82F5D1FCB3DB100CAB709 /* Assets.xcassets */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B556A5691FCBF7E9006C4857 /* Circle.swift in Sources */,
 				B5F82F851FCB3E0F00CAB709 /* Line.swift in Sources */,
 				B5F82F591FCB3DB100CAB709 /* ViewController.swift in Sources */,
 				B5F82F871FCB3F9300CAB709 /* DrawView.swift in Sources */,

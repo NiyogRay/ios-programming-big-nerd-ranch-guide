@@ -29,6 +29,8 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
     }
     var panRecognizer: UIPanGestureRecognizer!
     
+    // MARK: - IBInspectables
+    
     @IBInspectable var finishedLineColor: UIColor = UIColor.black {
         didSet {
             setNeedsDisplay()
@@ -110,10 +112,6 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
             let targetRect = CGRect(x: point.x, y: point.y, width: 2, height: 2)
             menu.setTargetRect(targetRect, in: self)
             menu.setMenuVisible(true, animated: true)
-        }
-        else {
-            // Hide the menu if no line is selected
-            menu.setMenuVisible(false, animated: true)
         }
         
         setNeedsDisplay()

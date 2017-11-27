@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TouchTracker" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-9A-9eM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TouchTracker" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWO-9A-9eM">
                                 <rect key="frame" x="86.999999999999986" y="389.66666666666669" width="201.66666666666663" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
@@ -28,8 +28,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RWO-9A-9eM" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="ZP0-A0-rcE"/>
-                            <constraint firstItem="RWO-9A-9eM" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ltK-t0-fhT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RWO-9A-9eM" secondAttribute="trailing" id="nuQ-vu-1xh"/>
+                            <constraint firstAttribute="leading" relation="lessThanOrEqual" secondItem="RWO-9A-9eM" secondAttribute="leading" id="ltK-t0-fhT"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RWO-9A-9eM" secondAttribute="trailing" id="nuQ-vu-1xh"/>
                             <constraint firstItem="RWO-9A-9eM" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="t7i-KT-lY3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

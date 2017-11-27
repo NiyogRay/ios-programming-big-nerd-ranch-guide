@@ -1,6 +1,6 @@
 import UIKit
 
-class DrawView: UIView {
+class DrawView: UIView, UIGestureRecognizerDelegate {
     
     var currentLines = [NSValue: Line]()
     var finishedLines = [Line]()
@@ -14,6 +14,7 @@ class DrawView: UIView {
             }
         }
     }
+    var panRecognizer: UIPanGestureRecognizer!
     
     @IBInspectable var finishedLineColor: UIColor = UIColor.black {
         didSet {
@@ -33,6 +34,8 @@ class DrawView: UIView {
         }
     }
     
+    // MARK: - Init
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -51,6 +54,12 @@ class DrawView: UIView {
         // long press recognizer
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(DrawView.longPress(_:)))
         addGestureRecognizer(longPressRecognizer)
+        
+        // pan recognizer
+        panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(DrawView.panLine(_:)))
+        panRecognizer.delegate = self
+        panRecognizer.cancelsTouchesInView = false
+        addGestureRecognizer(panRecognizer)
     }
     
     // MARK: - GestureRecognizers
@@ -113,6 +122,31 @@ class DrawView: UIView {
         }
         
         setNeedsDisplay()
+    }
+    
+    @objc func panLine(_ gestureRecognizer: UIPanGestureRecognizer) {
+        print("Recognized a pan")
+        
+        // If a line is selected...
+        if let index = selectedLineIndex {
+            // When the pan recognizer changes its position...
+            if gestureRecognizer.state == .changed {
+                // How far has the pan moved?
+                let translation = gestureRecognizer.translation(in: self)
+                
+                // Add the translation to the current beginning and end points of the line
+                // Make sure there are no copy and paste typos!
+                finishedLines[index].begin.x += translation.x
+                finishedLines[index].begin.y += translation.y
+                finishedLines[index].end.x += translation.x
+                finishedLines[index].end.y += translation.y
+                
+                gestureRecognizer.setTranslation(CGPoint.zero, in: self)
+                
+                // Redraw screen
+                setNeedsDisplay()
+            }
+        }
     }
     
     // MARK: - Responder
@@ -244,6 +278,12 @@ class DrawView: UIView {
         currentLines.removeAll()
         
         setNeedsDisplay()
+    }
+    
+    // MARK: - UIGestureRecognizerDelegate
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 

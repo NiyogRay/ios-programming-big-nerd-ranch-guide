@@ -103,8 +103,8 @@ class DrawView: UIView {
                 let x = begin.x + ((end.x - begin.x) * t)
                 let y = begin.y + ((end.y - begin.y) * t)
                 
-                // If the tapped point is within 20 points, let's return this line
-                if hypot(x - point.x, y - point.y) < 20.0 {
+                // If the tapped point is within 10 points, let's return this line
+                if hypot(x - point.x, y - point.y) < 10.0 {
                     return index
                 }
             }

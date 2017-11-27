@@ -36,18 +36,34 @@ class DrawView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        // double tap recognizer
         let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DrawView.doubleTap(_:)))
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.delaysTouchesBegan = true
         addGestureRecognizer(doubleTapRecognizer)
         
+        // tap recognizer
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DrawView.tap(_:)))
         tapRecognizer.delaysTouchesBegan = true
         tapRecognizer.require(toFail: doubleTapRecognizer)
         addGestureRecognizer(tapRecognizer)
+        
+        // long press recognizer
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(DrawView.longPress(_:)))
+        addGestureRecognizer(longPressRecognizer)
     }
     
     // MARK: - GestureRecognizers
+    
+    @objc func doubleTap(_ gestureRecognizer: UIGestureRecognizer) {
+        print("Recognized a double tap")
+        
+        selectedLineIndex = nil
+        currentLines.removeAll()
+        finishedLines.removeAll()
+        
+        setNeedsDisplay()
+    }
     
     @objc func tap(_ gestureRecognizer: UIGestureRecognizer) {
         print("Recognized a tap")
@@ -81,12 +97,20 @@ class DrawView: UIView {
         setNeedsDisplay()
     }
     
-    @objc func doubleTap(_ gestureRecognizer: UIGestureRecognizer) {
-        print("Recognized a double tap")
+    @objc func longPress(_ gestureRecognizer: UIGestureRecognizer) {
+        print("Recognized a long press")
         
-        selectedLineIndex = nil
-        currentLines.removeAll()
-        finishedLines.removeAll()
+        if gestureRecognizer.state == .began {
+            let point = gestureRecognizer.location(in: self)
+            selectedLineIndex = indexOfLine(at: point)
+            
+            if selectedLineIndex != nil {
+                currentLines.removeAll()
+            }
+        }
+        else if gestureRecognizer.state == .ended {
+            selectedLineIndex = nil
+        }
         
         setNeedsDisplay()
     }

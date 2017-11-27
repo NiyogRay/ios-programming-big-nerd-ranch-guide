@@ -28,6 +28,7 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
         }
     }
     var panRecognizer: UIPanGestureRecognizer!
+    var longPressRecognizer: UILongPressGestureRecognizer!
     
     // MARK: - IBInspectables
     
@@ -67,7 +68,7 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
         addGestureRecognizer(tapRecognizer)
         
         // long press recognizer
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(DrawView.longPress(_:)))
+        longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(DrawView.longPress(_:)))
         addGestureRecognizer(longPressRecognizer)
         
         // pan recognizer
@@ -137,6 +138,11 @@ class DrawView: UIView, UIGestureRecognizerDelegate {
     
     @objc func panLine(_ gestureRecognizer: UIPanGestureRecognizer) {
         print("Recognized a pan")
+        
+        guard longPressRecognizer.state == .changed
+        else {
+                return
+        }
         
         // If a line is selected...
         if let index = selectedLineIndex {

@@ -19,14 +19,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Osb-le-pMA">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                             </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c7n-vX-8Yx">
+                                <rect key="frame" x="16" y="72" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Interesting"/>
+                                    <segment title="Recent"/>
+                                </segments>
+                                <connections>
+                                    <action selector="photoTypeSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="vZJ-NX-CVi"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Osb-le-pMA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3oD-ew-HfT"/>
+                            <constraint firstItem="Osb-le-pMA" firstAttribute="top" secondItem="c7n-vX-8Yx" secondAttribute="bottom" constant="8" id="3wX-fD-Wp7"/>
+                            <constraint firstItem="c7n-vX-8Yx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7dN-U1-cwP"/>
                             <constraint firstItem="Osb-le-pMA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Gcx-LS-RLG"/>
+                            <constraint firstItem="c7n-vX-8Yx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Zie-SC-SQP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Osb-le-pMA" secondAttribute="bottom" id="aTW-Kd-LPt"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c7n-vX-8Yx" secondAttribute="trailing" constant="16" id="bst-Oo-dlN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Osb-le-pMA" secondAttribute="trailing" id="buZ-S1-YvT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -34,6 +47,7 @@
                     <navigationItem key="navigationItem" title="Photorama" id="EKH-iI-qde"/>
                     <connections>
                         <outlet property="imageView" destination="Osb-le-pMA" id="OHE-9P-abl"/>
+                        <outlet property="photoTypeSegmentedControl" destination="c7n-vX-8Yx" id="XnD-iR-cpD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

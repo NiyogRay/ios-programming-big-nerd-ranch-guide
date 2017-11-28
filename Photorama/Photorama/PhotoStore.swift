@@ -26,15 +26,22 @@ class PhotoStore {
     }()
 
     /// create a URLRequest that connects to api.flickr.com and asks for the list of interesting photos
-    func fetchInterestingPhotos(completion: @escaping (PhotosResult) -> Void) {
+    func fetchPhotos(ofType photoType: PhotoType, completion: @escaping (PhotosResult) -> Void) {
         
-        let url = FlickrAPI.interestingPhotosURL
+        let url: URL!
+        if photoType == .interesting {
+            url = FlickrAPI.interestingPhotosURL
+        }
+        else {
+            url = FlickrAPI.recentPhotosURL
+        }
+        
         let request = URLRequest(url: url)
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
             let httpResponse = response as! HTTPURLResponse
-            print("Flickr Interesting Photos Response")
+            print("Flickr Photos Response")
             print("Status Code: \(httpResponse.statusCode)")
             print("Header Fields: \(httpResponse.allHeaderFields)")
             

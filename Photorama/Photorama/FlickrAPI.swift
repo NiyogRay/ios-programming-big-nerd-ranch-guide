@@ -1,9 +1,11 @@
 import Foundation
 
+/// FLickr API errors
 enum FlickrError: Error {
     case invalidJSONData
 }
 
+/// Flickr Photo APIs
 enum Method: String {
     case interestingPhotos = "flickr.interestingness.getList"
 }

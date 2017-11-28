@@ -1,4 +1,15 @@
-import Foundation
+import UIKit
+
+/// the result of downloading an image
+enum ImageResult {
+    case success(UIImage)
+    case failure(Error)
+}
+
+/// photo errors
+enum PhotoError: Error {
+    case imageCreationError
+}
 
 enum PhotosResult {
     case success([Photo])
@@ -28,8 +39,25 @@ class PhotoStore {
         task.resume()
     }
     
-    // MARK: - Photos processing
+    /// download the image data
+    func fetchImage(for photo: Photo,
+                    completion: @escaping (ImageResult) -> Void) {
+        
+        let photoURL = photo.remoteURL
+        let request = URLRequest(url: photoURL)
+        
+        let task = session.dataTask(with: request) {
+            (data, response, error) -> Void in
+            
+            let result = self.processImageRequest(data: data, error: error)
+            completion(result)
+        }
+        task.resume()
+    }
     
+    // MARK: - Data Processing
+    
+    /// processes the data from the webservice request into an array of Photo objects
     private func processPhotosRequest(data: Data?, error: Error?) -> PhotosResult {
         guard
             let jsonData = data
@@ -37,5 +65,23 @@ class PhotoStore {
                 return .failure(error!)
         }
         return FlickrAPI.photos(fromJSON: jsonData)
+    }
+    
+    /// processes the data from the webservice request into an image
+    private func processImageRequest(data: Data?, error: Error?) -> ImageResult {
+        guard
+            let imageData = data,
+            let image = UIImage(data: imageData)
+            else {
+                
+                // Couldnt create an image
+                if data == nil {
+                    return .failure(error!)
+                }
+                else {
+                    return .failure(PhotoError.imageCreationError)
+                }
+        }
+        return .success(image)
     }
 }

@@ -8,14 +8,31 @@ enum PhotoType: Int {
 
 class PhotosViewController: UIViewController {
     
-    @IBOutlet var photoTypeSegmentedControl: UISegmentedControl!
     @IBOutlet var imageView: UIImageView!
+    var photoType: PhotoType!
     var store: PhotoStore!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    // MARK: - View cycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        fetchPhoto(ofType: photoType)
+    }
+    
+    // MARK: - Setup
+    
+    func setupTabBarItem() {
+    
+        let tabBarSystemItem: UITabBarSystemItem
+        switch photoType! {
+        case PhotoType.interesting:
+            tabBarSystemItem = UITabBarSystemItem.featured
+        case PhotoType.recent:
+            tabBarSystemItem = UITabBarSystemItem.recents
+        }
         
+        tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: photoType!.rawValue)
     }
     
     func updateImageView(for photo: Photo) {
@@ -48,13 +65,5 @@ class PhotosViewController: UIViewController {
                 print("Error fetching interesting photos: \(error)")
             }
         })
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func photoTypeSelected(_ sender: UISegmentedControl) {
-        
-        let photoType = PhotoType(rawValue: sender.selectedSegmentIndex)!
-        fetchPhoto(ofType: photoType)
     }
 }

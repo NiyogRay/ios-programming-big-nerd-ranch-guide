@@ -1,11 +1,3 @@
-//
-//  PhotoramaUITests.swift
-//  PhotoramaUITests
-//
-//  Created by Niyog Ray on 28/11/17.
-//  Copyright © 2017 Niyog. All rights reserved.
-//
-
 import XCTest
 
 class PhotoramaUITests: XCTestCase {

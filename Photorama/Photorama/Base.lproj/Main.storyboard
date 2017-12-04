@@ -13,46 +13,35 @@
         <!--Photorama-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PhotosViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photosViewController" id="BYZ-38-t0r" customClass="PhotosViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Osb-le-pMA">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </imageView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c7n-vX-8Yx">
-                                <rect key="frame" x="16" y="72" width="343" height="29"/>
-                                <segments>
-                                    <segment title="Interesting"/>
-                                    <segment title="Recent"/>
-                                </segments>
-                                <connections>
-                                    <action selector="photoTypeSelected:" destination="BYZ-38-t0r" eventType="valueChanged" id="vZJ-NX-CVi"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Osb-le-pMA" firstAttribute="top" secondItem="c7n-vX-8Yx" secondAttribute="bottom" constant="8" id="3wX-fD-Wp7"/>
-                            <constraint firstItem="c7n-vX-8Yx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7dN-U1-cwP"/>
+                            <constraint firstItem="Osb-le-pMA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="9kI-Cw-C7v"/>
                             <constraint firstItem="Osb-le-pMA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Gcx-LS-RLG"/>
-                            <constraint firstItem="c7n-vX-8Yx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Zie-SC-SQP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Osb-le-pMA" secondAttribute="bottom" id="aTW-Kd-LPt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="c7n-vX-8Yx" secondAttribute="trailing" constant="16" id="bst-Oo-dlN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Osb-le-pMA" secondAttribute="trailing" id="buZ-S1-YvT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="Bmf-Uf-3s0"/>
                     <navigationItem key="navigationItem" title="Photorama" id="EKH-iI-qde"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="Osb-le-pMA" id="OHE-9P-abl"/>
-                        <outlet property="photoTypeSegmentedControl" destination="c7n-vX-8Yx" id="XnD-iR-cpD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="231.19999999999999" y="57.121439280359823"/>
+            <point key="canvasLocation" x="1092" y="56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="AaZ-N0-ut2">
@@ -65,12 +54,27 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="7cZ-Nd-zyV"/>
+                        <segue destination="8bj-K5-Jjv" kind="relationship" relationship="rootViewController" id="7cZ-Nd-zyV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M1G-Ae-DHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-673" y="57"/>
+        </scene>
+        <!--Photorama-->
+        <scene sceneID="hSs-w8-m9Y">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8bj-K5-Jjv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Photorama" id="ccQ-mF-b8j"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iKK-GO-LK9">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5c2-rh-1JC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="217" y="56"/>
         </scene>
     </scenes>
 </document>

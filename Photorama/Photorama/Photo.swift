@@ -1,6 +1,6 @@
 import Foundation
 
-class Photo: Equatable {
+class Photo {
     
     let title: String
     let remoteURL: URL
@@ -16,9 +16,9 @@ class Photo: Equatable {
         self.remoteURL = remoteURL
         self.dateTaken = dateTaken
     }
-    
-    // MARK: - Equatable
-    
+}
+
+extension Photo: Equatable {
     static func == (lhs: Photo, rhs: Photo) -> Bool {
         // Two Photos are the same if they have the same id
         return lhs.id == rhs.id

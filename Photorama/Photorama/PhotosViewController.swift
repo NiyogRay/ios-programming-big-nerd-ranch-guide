@@ -76,7 +76,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
             // recent index path
             
             guard let photoIndex = self.photoDataSource.photos.index(of: photo),
-            case let .success(image) = result
+            case let .success(image) = imageResult
                 else {
                     return
             }

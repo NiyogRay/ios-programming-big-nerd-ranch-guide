@@ -1,6 +1,5 @@
 import UIKit
 
-/// segments for the segmented control
 enum PhotoType: Int {
     case interesting = 0
     case recent = 1
@@ -8,11 +7,19 @@ enum PhotoType: Int {
 
 class PhotosViewController: UIViewController {
     
-    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var collectionView: UICollectionView!
+    
     var photoType: PhotoType!
     var store: PhotoStore!
+    let photoDataSource = PhotoDataSource()
     
     // MARK: - View cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        collectionView.dataSource = photoDataSource
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -35,35 +42,23 @@ class PhotosViewController: UIViewController {
         tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: photoType!.rawValue)
     }
     
-    func updateImageView(for photo: Photo) {
-        store.fetchImage(for: photo) { (imageResult) in
-            
-            switch imageResult {
-            case let .success(image):
-                self.imageView.image = image
-            case let .failure(error):
-                print("Error downloading image: \(error)")
-            }
-        }
-    }
-    
     // MARK: - Fetch Photo
     
     func fetchPhoto(ofType photoType: PhotoType) {
         
         /// download the image data for the first photo that is returned from the interesting photos request and display it on the image view
-        store.fetchPhotos(ofType: photoType,
-                          completion: { (photosResult) in
+        store.fetchPhotos(ofType: photoType) {
+            (photosResult) in
             
             switch photosResult {
             case let .success(photos):
                 print("Successfully found \(photos.count) photos")
-                if let firstPhoto = photos.first {
-                    self.updateImageView(for: firstPhoto)
-                }
+                self.photoDataSource.photos = photos
             case let .failure(error):
                 print("Error fetching interesting photos: \(error)")
+                self.photoDataSource.photos.removeAll()
             }
-        })
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+        }
     }
 }

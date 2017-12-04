@@ -28,14 +28,34 @@
                                     <inset key="sectionInset" minX="2" minY="2" maxX="2" maxY="2"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="UICollectionViewCell" id="AsN-L1-a0k">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="AsN-L1-a0k" customClass="PhotoCollectionViewCell" customModule="Photorama" customModuleProvider="target">
                                         <rect key="frame" x="2" y="2" width="90" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Czl-m7-zcP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="RkN-wE-olZ">
+                                                    <rect key="frame" x="35" y="35" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Czl-m7-zcP" firstAttribute="leading" secondItem="AsN-L1-a0k" secondAttribute="leading" id="5j0-ec-Hdc"/>
+                                            <constraint firstAttribute="bottom" secondItem="Czl-m7-zcP" secondAttribute="bottom" id="Ahq-sJ-gpc"/>
+                                            <constraint firstAttribute="trailing" secondItem="Czl-m7-zcP" secondAttribute="trailing" id="EC7-DU-z6g"/>
+                                            <constraint firstItem="RkN-wE-olZ" firstAttribute="centerX" secondItem="Czl-m7-zcP" secondAttribute="centerX" id="GRU-MG-msc"/>
+                                            <constraint firstItem="Czl-m7-zcP" firstAttribute="top" secondItem="AsN-L1-a0k" secondAttribute="top" id="Oya-Az-ttF"/>
+                                            <constraint firstItem="RkN-wE-olZ" firstAttribute="centerY" secondItem="Czl-m7-zcP" secondAttribute="centerY" id="U5D-FC-CDf"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="Czl-m7-zcP" id="8dP-DV-ghk"/>
+                                            <outlet property="spinner" destination="RkN-wE-olZ" id="gbx-vi-n5C"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

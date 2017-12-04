@@ -13,6 +13,8 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     var store: PhotoStore!
     let photoDataSource = PhotoDataSource()
     
+    let collectionViewSectionInsets = UIEdgeInsets(top: 2.0, left: 2.0, bottom: 2.0, right: 2.0)
+    
     // MARK: - View cycle
     
     override func viewDidLoad() {
@@ -101,5 +103,24 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
                 cell.update(with: image)
             }
         }
+    }
+}
+
+extension PhotosViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let itemsPerRow: CGFloat = 4
+        
+        // calculate row spaces
+        let rowSpaces = collectionViewSectionInsets.left + collectionViewSectionInsets.right + (itemsPerRow - 1) * (collectionViewLayout as! UICollectionViewFlowLayout).minimumInteritemSpacing
+        let availableWidth = collectionView.frame.width - rowSpaces
+        let itemWidth = availableWidth / itemsPerRow
+        
+        return CGSize(width: itemWidth, height: itemWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return collectionViewSectionInsets
     }
 }

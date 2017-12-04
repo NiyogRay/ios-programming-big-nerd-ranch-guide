@@ -18,6 +18,8 @@ enum PhotosResult {
 
 class PhotoStore {
     
+    let imageStore = ImageStore()
+    
     //MARK: - URLSession
     
     private let session: URLSession = {
@@ -57,20 +59,38 @@ class PhotoStore {
     func fetchImage(for photo: Photo,
                     completion: @escaping (ImageResult) -> Void) {
         
+        
+        let photoKey = photo.id
+        // if image is already present in imageStore,
+        // load and return
+        if let image = imageStore.image(forKey: photoKey) {
+            OperationQueue.main.addOperation {
+                completion(.success(image))
+            }
+            return
+        }
+        
         let photoURL = photo.remoteURL
         let request = URLRequest(url: photoURL)
         
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
-            let httpResponse = response as! HTTPURLResponse
-            print("Flickr Photo Response")
-            print("Status Code: \(httpResponse.statusCode)")
-            print("Header Fields: \(httpResponse.allHeaderFields)")
-            
-            let result = self.processImageRequest(data: data, error: error)
-            OperationQueue.main.addOperation {
-                completion(result)
+            if let httpResponse = response as! HTTPURLResponse? {
+                print("Flickr Photo Response")
+                print("Status Code: \(httpResponse.statusCode)")
+                print("Header Fields: \(httpResponse.allHeaderFields)")
+                
+                let result = self.processImageRequest(data: data, error: error)
+                
+                // save the image using the imageStore
+                if case let .success(image) = result {
+                    self.imageStore.setImage(image, forKey: photoKey)
+                }
+                
+                OperationQueue.main.addOperation {
+                    completion(result)
+                }
             }
         }
         task.resume()

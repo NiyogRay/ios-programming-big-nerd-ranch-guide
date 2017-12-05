@@ -42,7 +42,11 @@ class PhotoStore {
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
-            let httpResponse = response as! HTTPURLResponse
+            guard let httpResponse = response as! HTTPURLResponse?
+            else {
+                return
+            }
+            
             print("Flickr Photos Response")
             print("Status Code: \(httpResponse.statusCode)")
             print("Header Fields: \(httpResponse.allHeaderFields)")
@@ -76,21 +80,23 @@ class PhotoStore {
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
             
-            if let httpResponse = response as! HTTPURLResponse? {
-                print("Flickr Photo Response")
-                print("Status Code: \(httpResponse.statusCode)")
-                print("Header Fields: \(httpResponse.allHeaderFields)")
-                
-                let result = self.processImageRequest(data: data, error: error)
-                
-                // save the image using the imageStore
-                if case let .success(image) = result {
-                    self.imageStore.setImage(image, forKey: photoKey)
-                }
-                
-                OperationQueue.main.addOperation {
-                    completion(result)
-                }
+            guard let httpResponse = response as! HTTPURLResponse?
+                else {
+                    return
+            }
+            print("Flickr Photo Response")
+            print("Status Code: \(httpResponse.statusCode)")
+            print("Header Fields: \(httpResponse.allHeaderFields)")
+            
+            let result = self.processImageRequest(data: data, error: error)
+            
+            // save the image using the imageStore
+            if case let .success(image) = result {
+                self.imageStore.setImage(image, forKey: photoKey)
+            }
+            
+            OperationQueue.main.addOperation {
+                completion(result)
             }
         }
         task.resume()

@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 /// FLickr API errors
 enum FlickrError: Error {
@@ -65,7 +66,8 @@ struct FlickrAPI {
     
     // MARK: - JSON
     
-    private static func photo(fromJSON json: [String: Any]) -> Photo? {
+    private static func photo(fromJSON json: [String: Any],
+                              into context: NSManagedObjectContext) -> Photo? {
         guard
             let id = json["id"] as? String,
             let title = json["title"] as? String,
@@ -79,15 +81,22 @@ struct FlickrAPI {
                 return nil
         }
         
-        return Photo(title: title,
-                     remoteURL: url,
-                     id: id,
-                     dateTaken: dateTaken)
+        var photo: Photo!
+        context.performAndWait {
+            photo = Photo(context: context)
+            photo.title = title
+            photo.id = id
+            photo.remoteURL = url as NSURL
+            photo.dateTaken = dateTaken as NSDate
+        }
+        
+        return photo
     }
     
     // MARK: - GET
     
-    static func photos(fromJSON data: Data) -> PhotosResult {
+    static func photos(fromJSON data: Data,
+                       into context: NSManagedObjectContext) -> PhotosResult {
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
             
@@ -103,7 +112,8 @@ struct FlickrAPI {
             
             var finalPhotos = [Photo]()
             for photoJSON in photosArray {
-                if let photo = photo(fromJSON: photoJSON) {
+                if let photo = photo(fromJSON: photoJSON,
+                                     into: context) {
                     finalPhotos.append(photo)
                 }
             }

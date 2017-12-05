@@ -62,7 +62,17 @@ class PhotoStore {
             print("Status Code: \(httpResponse.statusCode)")
             print("Header Fields: \(httpResponse.allHeaderFields)")
             
-            let result = self.processPhotosRequest(data: data, error: error)
+            var result = self.processPhotosRequest(data: data, error: error)
+            
+            if case .success = result {
+                do {
+                    try self.persistentContainer.viewContext.save()
+                }
+                catch let error {
+                    result = .failure(error)
+                }
+            }
+            
             OperationQueue.main.addOperation {
                 completion(result)
             }
@@ -128,7 +138,8 @@ class PhotoStore {
             else {
                 return .failure(error!)
         }
-        return FlickrAPI.photos(fromJSON: jsonData)
+        return FlickrAPI.photos(fromJSON: jsonData,
+                                into: persistentContainer.viewContext)
     }
     
     /// processes the data from the webservice request into an image

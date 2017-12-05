@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 /// the result of downloading an image
 enum ImageResult {
@@ -19,6 +20,16 @@ enum PhotosResult {
 class PhotoStore {
     
     let imageStore = ImageStore()
+    
+    let persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Photorama")
+        container.loadPersistentStores(completionHandler: { (description, error) in
+            if let error = error {
+                print("Error setting up Core Data (\(error))")
+            }
+        })
+        return container
+    }()
     
     //MARK: - URLSession
     

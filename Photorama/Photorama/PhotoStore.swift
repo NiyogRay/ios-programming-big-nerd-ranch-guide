@@ -64,7 +64,10 @@ class PhotoStore {
                     completion: @escaping (ImageResult) -> Void) {
         
         
-        let photoKey = photo.id
+        guard let photoKey = photo.id
+        else {
+            preconditionFailure("Photo expected to have an id")
+        }
         // if image is already present in imageStore,
         // load and return
         if let image = imageStore.image(forKey: photoKey) {
@@ -74,8 +77,11 @@ class PhotoStore {
             return
         }
         
-        let photoURL = photo.remoteURL
-        let request = URLRequest(url: photoURL)
+        guard let photoURL = photo.remoteURL
+        else {
+            preconditionFailure("Photo expected to have a remoteURL")
+        }
+        let request = URLRequest(url: photoURL as URL)
         
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in

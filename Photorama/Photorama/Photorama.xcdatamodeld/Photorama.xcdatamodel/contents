@@ -5,8 +5,9 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteURL" optional="YES" attributeType="Transformable" customClassName="NSURL" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Photo" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

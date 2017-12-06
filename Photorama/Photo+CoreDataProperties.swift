@@ -8,9 +8,10 @@ extension Photo {
         return NSFetchRequest<Photo>(entityName: "Photo")
     }
 
-    @NSManaged public var id: String?
-    @NSManaged public var title: String?
     @NSManaged public var dateTaken: NSDate?
+    @NSManaged public var id: String?
     @NSManaged public var remoteURL: NSURL?
+    @NSManaged public var title: String?
+    @NSManaged public var type: Int16
 
 }

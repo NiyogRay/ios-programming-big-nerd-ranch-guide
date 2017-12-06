@@ -26,11 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let recentPhotosViewController = storyboard.instantiateViewController(withIdentifier: "photosViewController") as! PhotosViewController
         
         interestingPhotosViewController.photoType = PhotoType.interesting
-        interestingPhotosViewController.store = PhotoStore()
+        interestingPhotosViewController.store = PhotoStore(ofType: interestingPhotosViewController.photoType)
         interestingPhotosViewController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.featured, tag: PhotoType.interesting.rawValue)
         
         recentPhotosViewController.photoType = PhotoType.recent
-        recentPhotosViewController.store = PhotoStore()
+        recentPhotosViewController.store = PhotoStore(ofType: recentPhotosViewController.photoType)
         recentPhotosViewController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.recents, tag: PhotoType.recent.rawValue)
         
         tabBarController.setViewControllers([interestingPhotosViewController, recentPhotosViewController], animated: true)

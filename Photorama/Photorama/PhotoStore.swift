@@ -1,3 +1,5 @@
+// Download Photos metadata, Save/Load from Core Data
+
 import UIKit
 import CoreData
 
@@ -20,6 +22,7 @@ enum PhotosResult {
 class PhotoStore {
     
     let imageStore = ImageStore()
+    var photoType: PhotoType!
     
     let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Photorama")
@@ -31,6 +34,10 @@ class PhotoStore {
         return container
     }()
     
+    init(ofType photoType: PhotoType) {
+        self.photoType = photoType
+    }
+    
     //MARK: - URLSession
     
     private let session: URLSession = {
@@ -39,7 +46,8 @@ class PhotoStore {
     }()
 
     /// create a URLRequest that connects to api.flickr.com and asks for the list of interesting photos
-    func fetchPhotos(ofType photoType: PhotoType, completion: @escaping (PhotosResult) -> Void) {
+    func fetchPhotos(ofType photoType: PhotoType,
+                     completion: @escaping (PhotosResult) -> Void) {
         
         let url: URL!
         if photoType == .interesting {
@@ -83,7 +91,6 @@ class PhotoStore {
     /// download the image data
     func fetchImage(for photo: Photo,
                     completion: @escaping (ImageResult) -> Void) {
-        
         
         guard let photoKey = photo.id
         else {
@@ -132,18 +139,21 @@ class PhotoStore {
     // MARK: - Data Processing
     
     /// processes the data from the webservice request into an array of Photo objects
-    private func processPhotosRequest(data: Data?, error: Error?) -> PhotosResult {
+    private func processPhotosRequest(data: Data?,
+                                      error: Error?) -> PhotosResult {
         guard
             let jsonData = data
             else {
                 return .failure(error!)
         }
         return FlickrAPI.photos(fromJSON: jsonData,
+                                ofType: photoType,
                                 into: persistentContainer.viewContext)
     }
     
     /// processes the data from the webservice request into an image
-    private func processImageRequest(data: Data?, error: Error?) -> ImageResult {
+    private func processImageRequest(data: Data?,
+                                     error: Error?) -> ImageResult {
         guard
             let imageData = data,
             let image = UIImage(data: imageData)
@@ -158,5 +168,28 @@ class PhotoStore {
                 }
         }
         return .success(image)
+    }
+    
+    // MARK: - Core Data
+    
+    func fetchAllPhotos(ofType photoType: PhotoType,
+                        completion: @escaping (PhotosResult) -> Void) {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let sortByDateTaken = NSSortDescriptor(key: #keyPath(Photo.dateTaken), ascending: true)
+        fetchRequest.sortDescriptors = [sortByDateTaken]
+        
+        let typePredicate = NSPredicate(format: "\(#keyPath(Photo.type)) == \(Int16(photoType.rawValue))")
+        fetchRequest.predicate = typePredicate
+        
+        let viewContext = persistentContainer.viewContext
+        viewContext.perform {
+            do {
+                let allPhotosOfType = try viewContext.fetch(fetchRequest)
+                completion(.success(allPhotosOfType))
+            }
+            catch {
+                completion(.failure(error))
+            }
+        }
     }
 }

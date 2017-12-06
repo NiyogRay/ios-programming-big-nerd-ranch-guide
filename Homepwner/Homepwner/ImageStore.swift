@@ -1,3 +1,5 @@
+// Save/Load image data to/from disk
+
 import UIKit
 
 class ImageStore {

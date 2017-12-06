@@ -90,26 +90,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="It2-LK-bjU">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="522"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Views" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0J-VU-omd">
+                                <rect key="frame" x="156.5" y="594" width="61.5" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="It2-LK-bjU" firstAttribute="leading" secondItem="NYm-5Q-RmD" secondAttribute="leading" id="9rV-Xa-BvV"/>
+                            <constraint firstItem="t0J-VU-omd" firstAttribute="top" secondItem="It2-LK-bjU" secondAttribute="bottom" constant="8" id="Dhf-wt-Npg"/>
+                            <constraint firstItem="t0J-VU-omd" firstAttribute="centerX" secondItem="NYm-5Q-RmD" secondAttribute="centerX" id="JBB-nC-bbh"/>
                             <constraint firstItem="NYm-5Q-RmD" firstAttribute="trailing" secondItem="It2-LK-bjU" secondAttribute="trailing" id="K9P-bS-0im"/>
                             <constraint firstItem="It2-LK-bjU" firstAttribute="top" secondItem="NYm-5Q-RmD" secondAttribute="top" id="PJX-H8-2gf"/>
-                            <constraint firstItem="NYm-5Q-RmD" firstAttribute="bottom" secondItem="It2-LK-bjU" secondAttribute="bottom" id="vcg-1f-aW6"/>
+                            <constraint firstItem="NYm-5Q-RmD" firstAttribute="bottom" secondItem="t0J-VU-omd" secondAttribute="bottom" constant="8" id="uww-VZ-jjb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NYm-5Q-RmD"/>
                     </view>
                     <navigationItem key="navigationItem" id="yyk-Y5-c9w"/>
                     <connections>
                         <outlet property="imageView" destination="It2-LK-bjU" id="y2s-NF-N2k"/>
+                        <outlet property="viewCountLabel" destination="t0J-VU-omd" id="kiB-jg-eeG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6q-rc-OQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2772" y="56"/>
+            <point key="canvasLocation" x="2772" y="55.322338830584712"/>
         </scene>
         <!--Photorama-->
         <scene sceneID="hSs-w8-m9Y">

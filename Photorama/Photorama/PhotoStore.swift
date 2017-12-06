@@ -192,4 +192,13 @@ class PhotoStore {
             }
         }
     }
+    
+    // https://forums.bignerdranch.com/t/solution-for-ch-22-bronze-challenge-photo-view-count/11408
+    func saveContextIfNeeded() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            print("Saving context")
+            try? context.save()
+        }
+    }
 }

@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 /// FLickr API errors
 enum FlickrError: Error {
@@ -65,7 +66,9 @@ struct FlickrAPI {
     
     // MARK: - JSON
     
-    private static func photo(fromJSON json: [String: Any]) -> Photo? {
+    private static func photo(fromJSON json: [String: Any],
+                              ofType photoType: PhotoType,
+                              into context: NSManagedObjectContext) -> Photo? {
         guard
             let id = json["id"] as? String,
             let title = json["title"] as? String,
@@ -79,15 +82,40 @@ struct FlickrAPI {
                 return nil
         }
         
-        return Photo(title: title,
-                     remoteURL: url,
-                     id: id,
-                     dateTaken: dateTaken)
+        // check if there is an existing photo with a given ID
+        // before inserting a new one.
+        
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let predicate = NSPredicate(format: "\(#keyPath(Photo.id)) == \(id)")
+        fetchRequest.predicate = predicate
+        
+        var fetchedPhotos: [Photo]?
+        context.performAndWait {
+            fetchedPhotos = try? fetchRequest.execute()
+        }
+        if let existingPhoto = fetchedPhotos?.first {
+            return existingPhoto
+        }
+        
+        var photo: Photo!
+        context.performAndWait {
+            photo = Photo(context: context)
+            photo.title = title
+            photo.id = id
+            photo.remoteURL = url as NSURL
+            photo.dateTaken = dateTaken as NSDate
+            photo.type = Int16(photoType.rawValue)
+            photo.viewCount = 0
+        }
+        
+        return photo
     }
     
     // MARK: - GET
     
-    static func photos(fromJSON data: Data) -> PhotosResult {
+    static func photos(fromJSON data: Data,
+                       ofType photoType: PhotoType,
+                       into context: NSManagedObjectContext) -> PhotosResult {
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: [])
             
@@ -103,7 +131,9 @@ struct FlickrAPI {
             
             var finalPhotos = [Photo]()
             for photoJSON in photosArray {
-                if let photo = photo(fromJSON: photoJSON) {
+                if let photo = photo(fromJSON: photoJSON,
+                                     ofType: photoType,
+                                     into: context) {
                     finalPhotos.append(photo)
                 }
             }

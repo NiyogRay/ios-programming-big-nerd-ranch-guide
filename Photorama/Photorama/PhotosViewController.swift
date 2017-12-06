@@ -20,10 +20,25 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        switch photoType {
+        case .interesting:
+            title = "Interesting Photos"
+        case .recent:
+            title = "Recent Photos"
+        default:
+            title = "Photorama"
+        }
+        
         collectionView.dataSource = photoDataSource
         collectionView.delegate = self
         
-        fetchPhoto(ofType: photoType)
+        updateDataSource()
+        
+        store.fetchPhotos(ofType: photoType) {
+            (photosResult) in
+            
+            self.updateDataSource()
+        }
     }
     
     // MARK: - Setup
@@ -40,21 +55,17 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
         
         tabBarItem = UITabBarItem(tabBarSystemItem: tabBarSystemItem, tag: photoType!.rawValue)
     }
+
+    // MARK: - Update Photos
     
-    // MARK: - Fetch Photo
-    
-    func fetchPhoto(ofType photoType: PhotoType) {
-        
-        /// download the image data for the first photo that is returned from the interesting photos request and display it on the image view
-        store.fetchPhotos(ofType: photoType) {
+    private func updateDataSource() {
+        store.fetchAllPhotos(ofType: photoType) {
             (photosResult) in
             
             switch photosResult {
             case let .success(photos):
-                print("Successfully found \(photos.count) photos")
                 self.photoDataSource.photos = photos
-            case let .failure(error):
-                print("Error fetching interesting photos: \(error)")
+            case .failure:
                 self.photoDataSource.photos.removeAll()
             }
             self.collectionView.reloadSections(IndexSet(integer: 0))

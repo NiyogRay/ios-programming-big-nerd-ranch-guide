@@ -18,22 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setTabBarVCs() {
         
-        let navigationController = window!.rootViewController as! UINavigationController
-        let tabBarController = navigationController.topViewController as! UITabBarController
+        let tabBarController = window!.rootViewController as! UITabBarController
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let interestingPhotosViewController = storyboard.instantiateViewController(withIdentifier: "photosViewController") as! PhotosViewController
-        let recentPhotosViewController = storyboard.instantiateViewController(withIdentifier: "photosViewController") as! PhotosViewController
         
-        interestingPhotosViewController.photoType = PhotoType.interesting
-        interestingPhotosViewController.store = PhotoStore(ofType: interestingPhotosViewController.photoType)
-        interestingPhotosViewController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.featured, tag: PhotoType.interesting.rawValue)
+        let interestingPhotosNC = storyboard.instantiateViewController(withIdentifier: "photosNC") as! UINavigationController
+        let interestingPhotosVC = interestingPhotosNC.viewControllers.first as! PhotosViewController
         
-        recentPhotosViewController.photoType = PhotoType.recent
-        recentPhotosViewController.store = PhotoStore(ofType: recentPhotosViewController.photoType)
-        recentPhotosViewController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.recents, tag: PhotoType.recent.rawValue)
+        let recentPhotosNC = storyboard.instantiateViewController(withIdentifier: "photosNC") as! UINavigationController
+        let recentPhotosVC = recentPhotosNC.viewControllers.first as! PhotosViewController
         
-        tabBarController.setViewControllers([interestingPhotosViewController, recentPhotosViewController], animated: true)
+        interestingPhotosVC.photoType = PhotoType.interesting
+        interestingPhotosVC.store = PhotoStore(ofType: interestingPhotosVC.photoType)
+        interestingPhotosNC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.featured, tag: PhotoType.interesting.rawValue)
+        
+        recentPhotosVC.photoType = PhotoType.recent
+        recentPhotosVC.store = PhotoStore(ofType: recentPhotosVC.photoType)
+        recentPhotosNC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.recents, tag: PhotoType.recent.rawValue)
+        
+        tabBarController.setViewControllers([interestingPhotosNC, recentPhotosNC], animated: true)
         tabBarController.selectedIndex = 0
     }
     

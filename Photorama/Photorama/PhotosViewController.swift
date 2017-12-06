@@ -20,6 +20,15 @@ class PhotosViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        switch photoType {
+        case .interesting:
+            title = "Interesting Photos"
+        case .recent:
+            title = "Recent Photos"
+        default:
+            title = "Photorama"
+        }
+        
         collectionView.dataSource = photoDataSource
         collectionView.delegate = self
         

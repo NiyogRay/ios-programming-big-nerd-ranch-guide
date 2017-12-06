@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mJz-tU-dZA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8bj-K5-Jjv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Photos View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="photosViewController" id="BYZ-38-t0r" customClass="PhotosViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photosVC" id="BYZ-38-t0r" customClass="PhotosViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +70,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="Bmf-Uf-3s0"/>
                     <navigationItem key="navigationItem" id="EKH-iI-qde"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -80,54 +79,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1092" y="56"/>
+            <point key="canvasLocation" x="1951" y="55"/>
         </scene>
         <!--Photo Info View Controller-->
         <scene sceneID="bAu-9Q-Kxu">
             <objects>
-                <viewController id="6C2-G7-Bpg" customClass="PhotoInfoViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photoInfoVC" id="6C2-G7-Bpg" customClass="PhotoInfoViewController" customModule="Photorama" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9tp-0r-JIV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="It2-LK-bjU">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="522"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 Views" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0J-VU-omd">
+                                <rect key="frame" x="156.5" y="594" width="61.5" height="16"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="It2-LK-bjU" firstAttribute="leading" secondItem="NYm-5Q-RmD" secondAttribute="leading" id="9rV-Xa-BvV"/>
+                            <constraint firstItem="t0J-VU-omd" firstAttribute="top" secondItem="It2-LK-bjU" secondAttribute="bottom" constant="8" id="Dhf-wt-Npg"/>
+                            <constraint firstItem="t0J-VU-omd" firstAttribute="centerX" secondItem="NYm-5Q-RmD" secondAttribute="centerX" id="JBB-nC-bbh"/>
                             <constraint firstItem="NYm-5Q-RmD" firstAttribute="trailing" secondItem="It2-LK-bjU" secondAttribute="trailing" id="K9P-bS-0im"/>
                             <constraint firstItem="It2-LK-bjU" firstAttribute="top" secondItem="NYm-5Q-RmD" secondAttribute="top" id="PJX-H8-2gf"/>
-                            <constraint firstItem="NYm-5Q-RmD" firstAttribute="bottom" secondItem="It2-LK-bjU" secondAttribute="bottom" id="vcg-1f-aW6"/>
+                            <constraint firstItem="NYm-5Q-RmD" firstAttribute="bottom" secondItem="t0J-VU-omd" secondAttribute="bottom" constant="8" id="uww-VZ-jjb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NYm-5Q-RmD"/>
                     </view>
+                    <navigationItem key="navigationItem" id="yyk-Y5-c9w"/>
                     <connections>
                         <outlet property="imageView" destination="It2-LK-bjU" id="y2s-NF-N2k"/>
+                        <outlet property="viewCountLabel" destination="t0J-VU-omd" id="kiB-jg-eeG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L6q-rc-OQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951" y="55"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AaZ-N0-ut2">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mJz-tU-dZA" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5gT-kT-sTb">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="8bj-K5-Jjv" kind="relationship" relationship="rootViewController" id="7cZ-Nd-zyV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M1G-Ae-DHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-673" y="57"/>
+            <point key="canvasLocation" x="2772" y="55.322338830584712"/>
         </scene>
         <!--Photorama-->
         <scene sceneID="hSs-w8-m9Y">
@@ -144,6 +135,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5c2-rh-1JC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="217" y="56"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="T1a-ms-b6n">
+            <objects>
+                <navigationController storyboardIdentifier="photosNC" automaticallyAdjustsScrollViewInsets="NO" id="6pL-vd-92j" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="Bmf-Uf-3s0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SMO-zZ-BX6">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="KDK-3F-G28"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="toR-R4-2a3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1091.2" y="55.772113943028494"/>
         </scene>
     </scenes>
 </document>

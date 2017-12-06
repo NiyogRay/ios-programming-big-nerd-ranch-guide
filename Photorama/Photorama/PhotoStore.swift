@@ -1,4 +1,7 @@
+// Download Photos metadata, Save/Load from Core Data
+
 import UIKit
+import CoreData
 
 /// the result of downloading an image
 enum ImageResult {
@@ -19,6 +22,21 @@ enum PhotosResult {
 class PhotoStore {
     
     let imageStore = ImageStore()
+    var photoType: PhotoType!
+    
+    let persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "Photorama")
+        container.loadPersistentStores(completionHandler: { (description, error) in
+            if let error = error {
+                print("Error setting up Core Data (\(error))")
+            }
+        })
+        return container
+    }()
+    
+    init(ofType photoType: PhotoType) {
+        self.photoType = photoType
+    }
     
     //MARK: - URLSession
     
@@ -28,7 +46,8 @@ class PhotoStore {
     }()
 
     /// create a URLRequest that connects to api.flickr.com and asks for the list of interesting photos
-    func fetchPhotos(ofType photoType: PhotoType, completion: @escaping (PhotosResult) -> Void) {
+    func fetchPhotos(ofType photoType: PhotoType,
+                     completion: @escaping (PhotosResult) -> Void) {
         
         let url: URL!
         if photoType == .interesting {
@@ -51,7 +70,17 @@ class PhotoStore {
             print("Status Code: \(httpResponse.statusCode)")
             print("Header Fields: \(httpResponse.allHeaderFields)")
             
-            let result = self.processPhotosRequest(data: data, error: error)
+            var result = self.processPhotosRequest(data: data, error: error)
+            
+            if case .success = result {
+                do {
+                    try self.persistentContainer.viewContext.save()
+                }
+                catch let error {
+                    result = .failure(error)
+                }
+            }
+            
             OperationQueue.main.addOperation {
                 completion(result)
             }
@@ -63,8 +92,10 @@ class PhotoStore {
     func fetchImage(for photo: Photo,
                     completion: @escaping (ImageResult) -> Void) {
         
-        
-        let photoKey = photo.id
+        guard let photoKey = photo.id
+        else {
+            preconditionFailure("Photo expected to have an id")
+        }
         // if image is already present in imageStore,
         // load and return
         if let image = imageStore.image(forKey: photoKey) {
@@ -74,8 +105,11 @@ class PhotoStore {
             return
         }
         
-        let photoURL = photo.remoteURL
-        let request = URLRequest(url: photoURL)
+        guard let photoURL = photo.remoteURL
+        else {
+            preconditionFailure("Photo expected to have a remoteURL")
+        }
+        let request = URLRequest(url: photoURL as URL)
         
         let task = session.dataTask(with: request) {
             (data, response, error) -> Void in
@@ -105,17 +139,21 @@ class PhotoStore {
     // MARK: - Data Processing
     
     /// processes the data from the webservice request into an array of Photo objects
-    private func processPhotosRequest(data: Data?, error: Error?) -> PhotosResult {
+    private func processPhotosRequest(data: Data?,
+                                      error: Error?) -> PhotosResult {
         guard
             let jsonData = data
             else {
                 return .failure(error!)
         }
-        return FlickrAPI.photos(fromJSON: jsonData)
+        return FlickrAPI.photos(fromJSON: jsonData,
+                                ofType: photoType,
+                                into: persistentContainer.viewContext)
     }
     
     /// processes the data from the webservice request into an image
-    private func processImageRequest(data: Data?, error: Error?) -> ImageResult {
+    private func processImageRequest(data: Data?,
+                                     error: Error?) -> ImageResult {
         guard
             let imageData = data,
             let image = UIImage(data: imageData)
@@ -130,5 +168,37 @@ class PhotoStore {
                 }
         }
         return .success(image)
+    }
+    
+    // MARK: - Core Data
+    
+    func fetchAllPhotos(ofType photoType: PhotoType,
+                        completion: @escaping (PhotosResult) -> Void) {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let sortByDateTaken = NSSortDescriptor(key: #keyPath(Photo.dateTaken), ascending: true)
+        fetchRequest.sortDescriptors = [sortByDateTaken]
+        
+        let typePredicate = NSPredicate(format: "\(#keyPath(Photo.type)) == \(Int16(photoType.rawValue))")
+        fetchRequest.predicate = typePredicate
+        
+        let viewContext = persistentContainer.viewContext
+        viewContext.perform {
+            do {
+                let allPhotosOfType = try viewContext.fetch(fetchRequest)
+                completion(.success(allPhotosOfType))
+            }
+            catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // https://forums.bignerdranch.com/t/solution-for-ch-22-bronze-challenge-photo-view-count/11408
+    func saveContextIfNeeded() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            print("Saving context")
+            try? context.save()
+        }
     }
 }
